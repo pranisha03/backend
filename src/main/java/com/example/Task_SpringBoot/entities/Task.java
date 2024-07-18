@@ -15,7 +15,7 @@ import java.util.Date;
 public class Task {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String title;
     private String description;
     private Date dueDate;

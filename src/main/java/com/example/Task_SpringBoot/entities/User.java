@@ -19,7 +19,7 @@ import java.util.List;
 public class User implements UserDetails {  // Corrected the interface name
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
     private String email;
     private String password;

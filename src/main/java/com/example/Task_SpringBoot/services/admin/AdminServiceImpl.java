@@ -46,9 +46,9 @@ public class AdminServiceImpl implements AdminService {
         Optional<User> optionalUser=userRepository.findById(taskDTO.getEmployeeId());
         if(optionalUser.isPresent()){
             Task task=new Task();
-            task.setTitle(task.getTitle());
-            task.setDescription(task.getDescription());
-            task.setPriority(task.getPriority());
+            task.setTitle(taskDTO.getTitle());
+            task.setDescription(taskDTO.getDescription());
+            task.setPriority(taskDTO.getPriority());
             task.setDueDate(taskDTO.getDueDate());
             task.setTaskStatus(TaskStatus.INPROGRESS);
             task.setUser(optionalUser.get());
@@ -86,6 +86,7 @@ public class AdminServiceImpl implements AdminService {
         if(optionalTask.isPresent()&& optionalUser.isPresent()){
             Task existingTask=optionalTask.get();
             existingTask.setTitle(taskDTO.getTitle());
+            existingTask.setDescription(taskDTO.getDescription());
             existingTask.setDueDate(taskDTO.getDueDate());
             existingTask.setPriority(taskDTO.getPriority());
             existingTask.setTaskStatus(mapStringToTaskStatus(String.valueOf(taskDTO.getTaskStatus())));
@@ -130,7 +131,7 @@ public class AdminServiceImpl implements AdminService {
             case "INPROGRESS" -> TaskStatus.INPROGRESS;
             case "COMPLETED" ->TaskStatus.COMPLETED;
             case "DEFERRED" ->TaskStatus.DEFERRED;
-            default -> TaskStatus.DEFERRED;
+            default -> TaskStatus.CANCELLED;
         };
 
     }
